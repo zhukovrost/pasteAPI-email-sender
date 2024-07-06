@@ -1,0 +1,16 @@
+smtp:
+  host: smtp.mailtrap.io
+  port: 2525
+  user: 179f53d6893b87
+  password: a7c1795e87dd9a
+  sender: Paste <no-reply@pasteAPI>
+  timeout: 5s
+logger:
+  need_debug: true
+rabbitmq:
+  url: amqp://guest:guest@localhost:5672/
+  timeout: 5s
+  exchange: emails
+  exchange_type: direct
+  queue: user_emails
+  consumer_tag: pasteAPI-email-sender
