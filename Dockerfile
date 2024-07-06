@@ -25,6 +25,9 @@ WORKDIR /app
 # Ensure that bash and make are installed
 RUN apk add --no-cache bash make
 
+# Install CA certificates
+RUN apk add --no-cache ca-certificates
+
 # Build the application using the Makefile
 RUN make build/app
 

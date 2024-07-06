@@ -2,6 +2,7 @@ package service
 
 import (
 	"bytes"
+	"crypto/tls"
 	"embed"
 	"errors"
 	"fmt"
@@ -33,13 +34,16 @@ type Config struct {
 var ErrInvalidEmail = errors.New("invalid email")
 
 func New(log *logrus.Logger, cfg Config) *Mailer {
+	dialer := mail.NewDialer(
+		cfg.Host,
+		cfg.Port,
+		cfg.Username,
+		cfg.Password,
+	)
+	dialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+
 	return &Mailer{
-		dialer: mail.NewDialer(
-			cfg.Host,
-			cfg.Port,
-			cfg.Username,
-			cfg.Password,
-		),
+		dialer: dialer,
 		Config: cfg,
 		Logger: log,
 	}
@@ -92,6 +96,7 @@ func (m *Mailer) send(data *models.Email, templateFile string) error {
 		if nil == err {
 			return nil
 		}
+		m.Logger.Debugf("Failed to send email (attempt %d of 3): %v", i, err)
 		time.Sleep(time.Second)
 	}
 
