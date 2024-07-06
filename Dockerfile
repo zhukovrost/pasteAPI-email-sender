@@ -26,7 +26,7 @@ WORKDIR /app
 RUN apk add --no-cache bash make
 
 # Build the application using the Makefile
-RUN make build/api
+RUN make build/app
 
 # Create a new stage for a minimal runtime image
 FROM scratch
@@ -35,7 +35,7 @@ FROM scratch
 COPY --from=builder /app/configs /configs
 
 # Copy binary file
-COPY --from=builder /app/bin/api /api
+COPY --from=builder /app/bin/app /app
 
 # Run the application
-CMD ["/api"]
+CMD ["/app"]
