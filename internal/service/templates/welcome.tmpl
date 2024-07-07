@@ -7,7 +7,9 @@ Thanks for signing up for a Paste account. We're excited to have you on board!
 
 For future reference, your user ID number is {{.To.ID}}.
 
-Please, confirm your email. Your activation code is {{.Message}}.
+Please, confirm your email.
+
+{{ .Message }}
 
 Thanks,
 
@@ -15,22 +17,24 @@ The Paste Team
 {{ end }}
 
 {{ define "htmlBody" }}
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://fonts.cdnfonts.com/css/helvetica-neue-5?styles=103510,103499,103506,103507,103508,103509,103502,103503" rel="stylesheet">
 </head>
-
-<body>
-    <p>Hi, <b>{{.To.Login}}</b></p>
-    <p>Thanks for signing up for a Paste account. We're excited to have you on board!</p>
-    <p>For future reference, your user ID number is {{.To.ID}}.</p>
-    <p>Please, confirm your email. <b>Your activation code is {{.Message}}</b>.</p>
-    <p>Thanks,</p>
-    <p>The Paste Team</p>
+<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', sans-serif;">
+    <div style="display: flex; align-items: center; flex-direction: column; margin-top: 60px">
+        <h1 style="font-size: 50px; font-weight: 800; text-transform: uppercase;">Paste team</h1>
+        <p style="margin: 5px 0;">Hi, <b>{{.To.Login}}</b></p>
+        <p style="margin: 5px 0;">Thanks for signing up for a Paste account. We're excited to have you on board!</p>
+        <p style="margin: 5px 0;">For future reference, your user ID number is {{.To.ID}}.</p>
+        <p style="margin: 5px 0;">Please, confirm your email.</p>
+        <a href="{{ .Message }}" style="margin-top: 30px; margin-bottom: 20px; font-size: 30px; padding: 10px 40px; text-transform: uppercase; text-decoration: none; color: white; background-color: #007bff; border-radius: 5px;">Confirm</a>
+        <p style="margin: 5px 0;">Thanks,</p>
+        <p style="margin: 5px 0;"><b>Paste Team</b></p>
+    </div>
 </body>
-
 </html>
 {{ end }}

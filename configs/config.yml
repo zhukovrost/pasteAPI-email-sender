@@ -1,9 +1,9 @@
 smtp:
-  host: smtp.mailtrap.io
-  port: 2525
-  user: 179f53d6893b87
-  password: a7c1795e87dd9a
-  sender: Paste <no-reply@pasteAPI>
+  host: smtp.mail.ru
+  port: 465
+  user: <user>
+  password: <password>
+  sender: <user>
   timeout: 5s
 logger:
   need_debug: true
