@@ -54,6 +54,9 @@ func (m *Mailer) SendEmail(data *models.Email) error {
 	case "activation":
 		m.Logger.Debug("got activation mail")
 		return m.send(data, "welcome.tmpl")
+	case "password-reset":
+		m.Logger.Debug("got password reset mail")
+		return m.send(data, "password_reset.tmpl")
 	default:
 		return ErrInvalidEmail
 	}

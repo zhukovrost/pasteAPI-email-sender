@@ -58,5 +58,5 @@ build/app: # build/docs
 build/image:
 	@echo 'Building image...'
 	-docker compose down
-	-docker rmi pasteapi-email-sender 2>/dev/null || true
+	-docker rmi zhukovrost/pasteapi-email-sender:${VERSION} 2>/dev/null || true
 	docker build -t zhukovrost/pasteapi-email-sender .
